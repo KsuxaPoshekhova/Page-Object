@@ -1,4 +1,4 @@
-package ru.netology;
+package page;
 
 public class Main {
     public static void main(String[] args) {
