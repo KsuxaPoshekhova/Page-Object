@@ -9,13 +9,14 @@ import page.LoginPage;
 
 import static com.codeborne.selenide.Selenide.open;
 import static data.DataHelper.*;
+import static data.DataHelper.getVerificationCode;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MoneyTransferTest {
     DashboardPage dashboardPage;
-    DataHelper.CardInfo firstCardInfo;
-    DataHelper.CardInfo secondCardInfo;
+    CardInfo firstCardInfo;
+    CardInfo secondCardInfo;
     int firstCardBalance;
     int secondCardBalance;
 
@@ -41,10 +42,10 @@ public class MoneyTransferTest {
         dashboardPage = transferPage.makeValidTransfer(String.valueOf(amount), firstCardInfo);
         var actualBalanceFirstCard = dashboardPage.getCardBalance(getMaskedNumber(firstCardInfo.getCardNumber()));
         var actualBalanceSecondCard = dashboardPage.getCardBalance(getMaskedNumber(secondCardInfo.getCardNumber()));
-        assertEquals(expectedBalanceFirstCard, actualBalanceFirstCard);
-        assertEquals(expectedBalanceSecondCard, actualBalanceSecondCard);
-        // assertAll(() -> assertEquals(expectedBalanceFirstCard, actualBalanceFirstCard),
-          //      () -> assertEquals(expectedBalanceSecondCard, actualBalanceSecondCard));
+        //assertEquals(expectedBalanceFirstCard, actualBalanceFirstCard);
+       // assertEquals(expectedBalanceSecondCard, actualBalanceSecondCard);
+         assertAll(() -> assertEquals(expectedBalanceFirstCard, actualBalanceFirstCard),
+               () -> assertEquals(expectedBalanceSecondCard, actualBalanceSecondCard));
     }
 
     @Test
