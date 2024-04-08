@@ -12,8 +12,8 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class DashboardPage {
     private final String balanceStart = ", баланс: ";
-    private final String balanceFinish = " p. ";
-    private final SelenideElement heading = $("[data-test-id=dashboard]");
+    private final String balanceFinish = " р. ";
+    private final SelenideElement heading = $("[data-test-id=action-deposit]");
     private final ElementsCollection cards = $$(".list__item div");
 
     public DashboardPage() {
