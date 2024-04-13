@@ -10,11 +10,12 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class DashboardPage {
-    private final String balanceStart = ", баланс: ";
-    private final String balanceFinish = " р. ";
-    private final SelenideElement heading = $("[data-test-id=action-deposit]");
+public class DashboardPage  {
+
+    private final String  balanceStart= " баланс: ";
+    private final String balanceFinish =  " р. ";
     private final ElementsCollection cards = $$(".list__item div");
+    SelenideElement heading = $("[data-test-id=dashboard]");
 
     public DashboardPage() {
         heading.shouldBe(visible);
