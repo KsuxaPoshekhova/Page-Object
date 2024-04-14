@@ -9,26 +9,26 @@ import lombok.val;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static java.awt.SystemColor.text;
 
-public class DashboardPage  {
-
-    private final String  balanceStart= " баланс: ";
-    private final String balanceFinish =  " р. ";
+public class DashboardPage {
+    // к сожалению, разработчики не дали нам удобного селектора, поэтому так
     private final ElementsCollection cards = $$(".list__item div");
-    SelenideElement heading = $("[data-test-id=dashboard]");
+    private final String balanceStart = "баланс: ";
+    private final String balanceFinish = " р.";
 
     public DashboardPage() {
+       SelenideElement heading = $("[data-test-id=dashboard]");
         heading.shouldBe(visible);
-    }
-
-    public TransferPage selectCardToTransfer(DataHelper.CardInfo cardInfo) {
-        cards.findBy(Condition.attribute("data-test-id", cardInfo.getTestId())).$("button").click();
-        return new TransferPage();
     }
 
     public int getCardBalance(String maskedCarNumber) {
         var text = cards.findBy(Condition.text(maskedCarNumber)).getText();
         return extractBalance(text);
+    }
+    public TransferPage selectCardToTransfer(DataHelper.CardInfo cardInfo) {
+        cards.findBy(Condition.attribute("data-test-id", cardInfo.getTestId())).$("button").click();
+        return new TransferPage();
     }
 
     private int extractBalance(String text) {
@@ -37,5 +37,4 @@ public class DashboardPage  {
         val value = text.substring(start + balanceStart.length(), finish);
         return Integer.parseInt(value);
     }
-
 }
